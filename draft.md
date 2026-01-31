@@ -50,3 +50,17 @@ To build the "Introduction" and "Atmosphere Team Plugin" versions, you need to m
 ### Development Tools
 * **Package Manager:** `npm` / `bun`
 * **Local Tunneling:** `ngrok` or `localtunnel` (for testing WebSockets from external devices if needed).
+---
+## 4. Visual Intelligence & AR Upgrade (New)
+To add "Smart Face Effects" (e.g., sunglasses on valid detection, emotion-triggered filters):
+### Face Tracking & Emotion
+*   **Core Tracker:** **MediaPipe Face Landmarker** (Google)
+    *   *Why:* Industry standard for web. Zero server latency (runs in browser via WebAssembly). Provides 478 3D face landmarks to anchor effects to.
+*   **Emotion Detection:**
+    *   **Option A (Free/Fast):** **face-api.js** (older but easy) or training a small **TensorFlow.js** classifier on top of MediaPipe landmarks.
+    *   **Option B (Premium/Deep):** **Hume AI** (Voice/Face Expression API). Use this if you want to detect *subtle* vibes like "awkwardness" or "sarcasm" rather than just "happy/sad".
+### AR Rendering (The Masks)
+*   **3D Engine:** **React Three Fiber (R3F)** (Three.js wrapper)
+    *   *Why:* Allows you to componentize 3D objects. `<Sunglasses position={noseBridge} />`.
+*   **Face Mesh Helper:** **@react-three/drei**
+    *   Contains `FaceControls` or helpers to map video texture to 3D geometry easily.
